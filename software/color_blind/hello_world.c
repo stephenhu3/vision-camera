@@ -49,15 +49,63 @@ int main()
 			volatile unsigned int position = base + offset;
 			unsigned int val = IORD_16DIRECT(position, 0);
 			int red = (val & (0x1F << 11)) >> 11;
+			red *= (255/31); // convert to 255 RGB scheme
 			// 0x1F is 11111
 			int green = (val & (0x3F << 5)) >> 5;
+			green *= (255/63); // convert to 255 RGB scheme
 			// 0x3F = 111111
 			int blue = (val & 0x1F);
+			blue *= (255/31); // convert to 255 RGB scheme
 			// 0x1F is 11111
 			counter = 0;
 			printf("Pixel: (%d, %d) ", x, y);
-			printf("Red: %d Green: %d Blue: %d\n", red * (255/31), green * (255/63), blue * (255/31));
-	//		usleep(1000000);
+			printf("Red: %d Green: %d Blue: %d\n", red, green, blue);
+			//Log the color detected (Red, Orange, Yellow, Green, Blue, Indigo, Violet, Pink)
+			char *color;
+			int detected = 0;
+
+			if (red > 240) {
+				// Either red or orange or pink or yellow
+				if (green < 100 && blue < 100) {
+					color = "Red";
+					detected = 1;
+				}
+				else if (green > 100 && blue < 100) {
+					color = "Orange";
+					detected = 1;
+				}
+				else if (green < 150 && blue > 240) {
+					color = "Pink";
+					detected = 1;
+				}
+				else if (green > 240 && blue < 175) {
+					color = "Yellow";
+					detected = 1;
+				}
+			} else if (green > 240) {
+				// If green
+				if (red < 150 && blue < 150) {
+					color = "Green";
+					detected = 1;
+				}
+			} else if (blue > 240) {
+				// Either indigo, violet, or blue
+				if (red < 50 && green < 100) {
+					color = "Indigo";
+					detected = 1;
+				}
+				else if (red < 100 && green < 100) {
+					color = "Violet";
+					detected = 1;
+				}
+				else if (red < 75 && green < 175) {
+					color = "Blue";
+					detected = 1;
+				}
+			}
+
+			if (detected == 1)
+				printf("Color Detected: %s\n", color);
 		}
   }
   return 0;
