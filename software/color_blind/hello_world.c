@@ -66,7 +66,7 @@ int main()
 
 			if (red > 240) {
 				// Either red or orange or pink or yellow
-				if (green < 100 && blue < 100) {
+				if (green < 120 && blue < 120) {
 					color = "Red";
 					detected = 1;
 				}
@@ -74,31 +74,31 @@ int main()
 					color = "Orange";
 					detected = 1;
 				}
-				else if (green < 150 && blue > 240) {
+				else if (green < 175 && blue > 240) {
 					color = "Pink";
 					detected = 1;
 				}
-				else if (green > 240 && blue < 175) {
+				else if (green > 240 && blue < 200) {
 					color = "Yellow";
 					detected = 1;
 				}
 			} else if (green > 240) {
 				// If green
-				if (red < 150 && blue < 150) {
+				if (red < 180 && blue < 180) {
 					color = "Green";
 					detected = 1;
 				}
 			} else if (blue > 240) {
 				// Either indigo, violet, or blue
-				if (red < 50 && green < 100) {
+				if (red < 50 && green < 130) {
 					color = "Indigo";
 					detected = 1;
 				}
-				else if (red < 100 && green < 100) {
+				else if (red < 130 && green < 130) {
 					color = "Violet";
 					detected = 1;
 				}
-				else if (red < 75 && green < 175) {
+				else if (red < 75 && green < 200) {
 					color = "Blue";
 					detected = 1;
 				}

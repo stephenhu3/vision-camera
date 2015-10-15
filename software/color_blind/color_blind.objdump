@@ -1002,12 +1002,12 @@ int main()
   8003cc:	10803c50 	cmplti	r2,r2,241
   8003d0:	1000301e 	bne	r2,zero,800494 <main+0x258>
 				// Either red or orange or pink or yellow
-				if (green < 100 && blue < 100) {
+				if (green < 120 && blue < 120) {
   8003d4:	e0bff717 	ldw	r2,-36(fp)
-  8003d8:	10801908 	cmpgei	r2,r2,100
+  8003d8:	10801e08 	cmpgei	r2,r2,120
   8003dc:	1000091e 	bne	r2,zero,800404 <main+0x1c8>
   8003e0:	e0bff617 	ldw	r2,-40(fp)
-  8003e4:	10801908 	cmpgei	r2,r2,100
+  8003e4:	10801e08 	cmpgei	r2,r2,120
   8003e8:	1000061e 	bne	r2,zero,800404 <main+0x1c8>
 					color = "Red";
   8003ec:	00802074 	movhi	r2,129
@@ -1021,7 +1021,7 @@ int main()
 
 			if (red > 240) {
 				// Either red or orange or pink or yellow
-				if (green < 100 && blue < 100) {
+				if (green < 120 && blue < 120) {
   800400:	00005906 	br	800568 <main+0x32c>
 					color = "Red";
 					detected = 1;
@@ -1041,7 +1041,7 @@ int main()
   800428:	00800044 	movi	r2,1
   80042c:	e0bff415 	stw	r2,-48(fp)
 				// Either red or orange or pink or yellow
-				if (green < 100 && blue < 100) {
+				if (green < 120 && blue < 120) {
 					color = "Red";
 					detected = 1;
 				}
@@ -1050,9 +1050,9 @@ int main()
 					color = "Orange";
 					detected = 1;
 				}
-				else if (green < 150 && blue > 240) {
+				else if (green < 175 && blue > 240) {
   800434:	e0bff717 	ldw	r2,-36(fp)
-  800438:	10802588 	cmpgei	r2,r2,150
+  800438:	10802bc8 	cmpgei	r2,r2,175
   80043c:	1000091e 	bne	r2,zero,800464 <main+0x228>
   800440:	e0bff617 	ldw	r2,-40(fp)
   800444:	10803c50 	cmplti	r2,r2,241
@@ -1069,17 +1069,17 @@ int main()
 					color = "Orange";
 					detected = 1;
 				}
-				else if (green < 150 && blue > 240) {
+				else if (green < 175 && blue > 240) {
   800460:	00004106 	br	800568 <main+0x32c>
 					color = "Pink";
 					detected = 1;
 				}
-				else if (green > 240 && blue < 175) {
+				else if (green > 240 && blue < 200) {
   800464:	e0bff717 	ldw	r2,-36(fp)
   800468:	10803c50 	cmplti	r2,r2,241
   80046c:	10003e1e 	bne	r2,zero,800568 <main+0x32c>
   800470:	e0bff617 	ldw	r2,-40(fp)
-  800474:	10802bc8 	cmpgei	r2,r2,175
+  800474:	10803208 	cmpgei	r2,r2,200
   800478:	10003b1e 	bne	r2,zero,800568 <main+0x32c>
 					color = "Yellow";
   80047c:	00802074 	movhi	r2,129
@@ -1095,12 +1095,12 @@ int main()
   800498:	10803c50 	cmplti	r2,r2,241
   80049c:	10000c1e 	bne	r2,zero,8004d0 <main+0x294>
 				// If green
-				if (red < 150 && blue < 150) {
+				if (red < 180 && blue < 180) {
   8004a0:	e0bff817 	ldw	r2,-32(fp)
-  8004a4:	10802588 	cmpgei	r2,r2,150
+  8004a4:	10802d08 	cmpgei	r2,r2,180
   8004a8:	10002f1e 	bne	r2,zero,800568 <main+0x32c>
   8004ac:	e0bff617 	ldw	r2,-40(fp)
-  8004b0:	10802588 	cmpgei	r2,r2,150
+  8004b0:	10802d08 	cmpgei	r2,r2,180
   8004b4:	10002c1e 	bne	r2,zero,800568 <main+0x32c>
 					color = "Green";
   8004b8:	00802074 	movhi	r2,129
@@ -1116,12 +1116,12 @@ int main()
   8004d4:	10803c50 	cmplti	r2,r2,241
   8004d8:	1000231e 	bne	r2,zero,800568 <main+0x32c>
 				// Either indigo, violet, or blue
-				if (red < 50 && green < 100) {
+				if (red < 50 && green < 130) {
   8004dc:	e0bff817 	ldw	r2,-32(fp)
   8004e0:	10800c88 	cmpgei	r2,r2,50
   8004e4:	1000091e 	bne	r2,zero,80050c <main+0x2d0>
   8004e8:	e0bff717 	ldw	r2,-36(fp)
-  8004ec:	10801908 	cmpgei	r2,r2,100
+  8004ec:	10802088 	cmpgei	r2,r2,130
   8004f0:	1000061e 	bne	r2,zero,80050c <main+0x2d0>
 					color = "Indigo";
   8004f4:	00802074 	movhi	r2,129
@@ -1135,17 +1135,17 @@ int main()
 				}
 			} else if (blue > 240) {
 				// Either indigo, violet, or blue
-				if (red < 50 && green < 100) {
+				if (red < 50 && green < 130) {
   800508:	00001706 	br	800568 <main+0x32c>
 					color = "Indigo";
 					detected = 1;
 				}
-				else if (red < 100 && green < 100) {
+				else if (red < 130 && green < 130) {
   80050c:	e0bff817 	ldw	r2,-32(fp)
-  800510:	10801908 	cmpgei	r2,r2,100
+  800510:	10802088 	cmpgei	r2,r2,130
   800514:	1000091e 	bne	r2,zero,80053c <main+0x300>
   800518:	e0bff717 	ldw	r2,-36(fp)
-  80051c:	10801908 	cmpgei	r2,r2,100
+  80051c:	10802088 	cmpgei	r2,r2,130
   800520:	1000061e 	bne	r2,zero,80053c <main+0x300>
 					color = "Violet";
   800524:	00802074 	movhi	r2,129
@@ -1155,21 +1155,21 @@ int main()
   800530:	00800044 	movi	r2,1
   800534:	e0bff415 	stw	r2,-48(fp)
 				// Either indigo, violet, or blue
-				if (red < 50 && green < 100) {
+				if (red < 50 && green < 130) {
 					color = "Indigo";
 					detected = 1;
 				}
-				else if (red < 100 && green < 100) {
+				else if (red < 130 && green < 130) {
   800538:	00000b06 	br	800568 <main+0x32c>
 					color = "Violet";
 					detected = 1;
 				}
-				else if (red < 75 && green < 175) {
+				else if (red < 75 && green < 200) {
   80053c:	e0bff817 	ldw	r2,-32(fp)
   800540:	108012c8 	cmpgei	r2,r2,75
   800544:	1000081e 	bne	r2,zero,800568 <main+0x32c>
   800548:	e0bff717 	ldw	r2,-36(fp)
-  80054c:	10802bc8 	cmpgei	r2,r2,175
+  80054c:	10803208 	cmpgei	r2,r2,200
   800550:	1000051e 	bne	r2,zero,800568 <main+0x32c>
 					color = "Blue";
   800554:	00802074 	movhi	r2,129
