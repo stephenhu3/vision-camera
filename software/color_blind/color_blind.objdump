@@ -922,54 +922,54 @@ int main()
 	while(1) {
 		// draw the reticle
 		// left bar
-		write_pixel(313, 240, 0xFFFF);
- 18002a0:	01004e44 	movi	r4,313
+		write_pixel(312, 240, 0xFFFF);
+ 18002a0:	01004e04 	movi	r4,312
  18002a4:	01403c04 	movi	r5,240
  18002a8:	01bfffc4 	movi	r6,-1
  18002ac:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(314, 240, 0xFFFF);
- 18002b0:	01004e84 	movi	r4,314
+		write_pixel(313, 240, 0xFFFF);
+ 18002b0:	01004e44 	movi	r4,313
  18002b4:	01403c04 	movi	r5,240
  18002b8:	01bfffc4 	movi	r6,-1
  18002bc:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(315, 240, 0xFFFF);
- 18002c0:	01004ec4 	movi	r4,315
+		write_pixel(314, 240, 0xFFFF);
+ 18002c0:	01004e84 	movi	r4,314
  18002c4:	01403c04 	movi	r5,240
  18002c8:	01bfffc4 	movi	r6,-1
  18002cc:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(316, 240, 0xFFFF);
- 18002d0:	01004f04 	movi	r4,316
+		write_pixel(315, 240, 0xFFFF);
+ 18002d0:	01004ec4 	movi	r4,315
  18002d4:	01403c04 	movi	r5,240
  18002d8:	01bfffc4 	movi	r6,-1
  18002dc:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(317, 240, 0xFFFF);
- 18002e0:	01004f44 	movi	r4,317
+		write_pixel(316, 240, 0xFFFF);
+ 18002e0:	01004f04 	movi	r4,316
  18002e4:	01403c04 	movi	r5,240
  18002e8:	01bfffc4 	movi	r6,-1
  18002ec:	18001f00 	call	18001f0 <write_pixel>
 		// right bar
-		write_pixel(323, 240, 0xFFFF);
- 18002f0:	010050c4 	movi	r4,323
+		write_pixel(324, 240, 0xFFFF);
+ 18002f0:	01005104 	movi	r4,324
  18002f4:	01403c04 	movi	r5,240
  18002f8:	01bfffc4 	movi	r6,-1
  18002fc:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(324, 240, 0xFFFF);
- 1800300:	01005104 	movi	r4,324
+		write_pixel(325, 240, 0xFFFF);
+ 1800300:	01005144 	movi	r4,325
  1800304:	01403c04 	movi	r5,240
  1800308:	01bfffc4 	movi	r6,-1
  180030c:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(325, 240, 0xFFFF);
- 1800310:	01005144 	movi	r4,325
+		write_pixel(326, 240, 0xFFFF);
+ 1800310:	01005184 	movi	r4,326
  1800314:	01403c04 	movi	r5,240
  1800318:	01bfffc4 	movi	r6,-1
  180031c:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(326, 240, 0xFFFF);
- 1800320:	01005184 	movi	r4,326
+		write_pixel(327, 240, 0xFFFF);
+ 1800320:	010051c4 	movi	r4,327
  1800324:	01403c04 	movi	r5,240
  1800328:	01bfffc4 	movi	r6,-1
  180032c:	18001f00 	call	18001f0 <write_pixel>
-		write_pixel(327, 240, 0xFFFF);
- 1800330:	010051c4 	movi	r4,327
+		write_pixel(328, 240, 0xFFFF);
+ 1800330:	01005204 	movi	r4,328
  1800334:	01403c04 	movi	r5,240
  1800338:	01bfffc4 	movi	r6,-1
  180033c:	18001f00 	call	18001f0 <write_pixel>

@@ -31,17 +31,17 @@ int main()
 	while(1) {
 		// draw the reticle
 		// left bar
+		write_pixel(312, 240, 0xFFFF);
 		write_pixel(313, 240, 0xFFFF);
 		write_pixel(314, 240, 0xFFFF);
 		write_pixel(315, 240, 0xFFFF);
 		write_pixel(316, 240, 0xFFFF);
-		write_pixel(317, 240, 0xFFFF);
 		// right bar
-		write_pixel(323, 240, 0xFFFF);
 		write_pixel(324, 240, 0xFFFF);
 		write_pixel(325, 240, 0xFFFF);
 		write_pixel(326, 240, 0xFFFF);
 		write_pixel(327, 240, 0xFFFF);
+		write_pixel(328, 240, 0xFFFF);
 //		// top bar
 //		write_pixel(320, 234, 0xFFFF);
 //		write_pixel(320, 235, 0xFFFF);
