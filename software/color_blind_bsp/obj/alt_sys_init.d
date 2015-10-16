@@ -11,7 +11,7 @@ obj/alt_sys_init.o: alt_sys_init.c system.h linker.h \
   drivers/inc/altera_up_avalon_audio_and_video_config.h \
   HAL/inc/alt_types.h HAL/inc/sys/alt_dev.h \
   drivers/inc/altera_up_avalon_audio_and_video_config_regs.h HAL/inc/io.h \
-  HAL/inc/alt_types.h \
+  HAL/inc/alt_types.h drivers/inc/altera_up_avalon_character_lcd.h \
   drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h
 
 system.h:
@@ -69,5 +69,7 @@ drivers/inc/altera_up_avalon_audio_and_video_config_regs.h:
 HAL/inc/io.h:
 
 HAL/inc/alt_types.h:
+
+drivers/inc/altera_up_avalon_character_lcd.h:
 
 drivers/inc/altera_up_avalon_video_pixel_buffer_dma.h:

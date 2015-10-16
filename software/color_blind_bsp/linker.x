@@ -4,7 +4,7 @@
  * Machine generated for CPU 'CPU' in SOPC Builder design 'Video_System'
  * SOPC Builder design path: C:/Users/Stephen/Desktop/workspace/Extras_D5M_Video_In/verilog/Video_System.sopcinfo
  *
- * Generated: Sun Oct 11 21:56:38 PDT 2015
+ * Generated: Thu Oct 15 16:49:01 PDT 2015
  */
 
 /*
@@ -50,14 +50,14 @@
 
 MEMORY
 {
-    reset : ORIGIN = 0x800000, LENGTH = 32
-    sdram : ORIGIN = 0x800020, LENGTH = 8388576
     Onchip_Memory : ORIGIN = 0x1004000, LENGTH = 16384
+    reset : ORIGIN = 0x1800000, LENGTH = 32
+    sdram : ORIGIN = 0x1800020, LENGTH = 8388576
 }
 
 /* Define symbols for each memory base-address */
-__alt_mem_sdram = 0x800000;
 __alt_mem_Onchip_Memory = 0x1004000;
+__alt_mem_sdram = 0x1800000;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
                "elf32-littlenios2",
@@ -308,7 +308,24 @@ SECTIONS
      *
      */
 
-    .sdram LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    .Onchip_Memory : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
+    {
+        PROVIDE (_alt_partition_Onchip_Memory_start = ABSOLUTE(.));
+        *(.Onchip_Memory. Onchip_Memory.*)
+        . = ALIGN(4);
+        PROVIDE (_alt_partition_Onchip_Memory_end = ABSOLUTE(.));
+    } > Onchip_Memory
+
+    PROVIDE (_alt_partition_Onchip_Memory_load_addr = LOADADDR(.Onchip_Memory));
+
+    /*
+     *
+     * This section's LMA is set to the .text region.
+     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
+     *
+     */
+
+    .sdram LOADADDR (.Onchip_Memory) + SIZEOF (.Onchip_Memory) : AT ( LOADADDR (.Onchip_Memory) + SIZEOF (.Onchip_Memory) )
     {
         PROVIDE (_alt_partition_sdram_start = ABSOLUTE(.));
         *(.sdram. sdram.*)
@@ -320,23 +337,6 @@ SECTIONS
     } > sdram
 
     PROVIDE (_alt_partition_sdram_load_addr = LOADADDR(.sdram));
-
-    /*
-     *
-     * This section's LMA is set to the .text region.
-     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
-     *
-     */
-
-    .Onchip_Memory : AT ( LOADADDR (.sdram) + SIZEOF (.sdram) )
-    {
-        PROVIDE (_alt_partition_Onchip_Memory_start = ABSOLUTE(.));
-        *(.Onchip_Memory. Onchip_Memory.*)
-        . = ALIGN(4);
-        PROVIDE (_alt_partition_Onchip_Memory_end = ABSOLUTE(.));
-    } > Onchip_Memory
-
-    PROVIDE (_alt_partition_Onchip_Memory_load_addr = LOADADDR(.Onchip_Memory));
 
     /*
      * Stabs debugging sections.
@@ -385,7 +385,7 @@ SECTIONS
 /*
  * Don't override this, override the __alt_stack_* symbols instead.
  */
-__alt_data_end = 0x1000000;
+__alt_data_end = 0x2000000;
 
 /*
  * The next two symbols define the location of the default stack.  You can
@@ -401,4 +401,4 @@ PROVIDE( __alt_stack_limit   = __alt_stack_base );
  * Override this symbol to put the heap in a different memory.
  */
 PROVIDE( __alt_heap_start    = end );
-PROVIDE( __alt_heap_limit    = 0x1000000 );
+PROVIDE( __alt_heap_limit    = 0x2000000 );

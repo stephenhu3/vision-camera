@@ -500,12 +500,12 @@ defparam Video_System_CPU_ociram_sp_ram.lpm_file = "Video_System_CPU_ociram_defa
 //synthesis read_comments_as_HDL on
 //defparam Video_System_CPU_ociram_sp_ram.lpm_file = "Video_System_CPU_ociram_default_contents.mif";
 //synthesis read_comments_as_HDL off
-  assign cfgrom_readdata = (MonAReg[4 : 2] == 3'd0)? 32'h00800020 :
+  assign cfgrom_readdata = (MonAReg[4 : 2] == 3'd0)? 32'h01800020 :
     (MonAReg[4 : 2] == 3'd1)? 32'h00001919 :
     (MonAReg[4 : 2] == 3'd2)? 32'h00040000 :
     (MonAReg[4 : 2] == 3'd3)? 32'h00000000 :
     (MonAReg[4 : 2] == 3'd4)? 32'h20000000 :
-    (MonAReg[4 : 2] == 3'd5)? 32'h00800000 :
+    (MonAReg[4 : 2] == 3'd5)? 32'h01800000 :
     (MonAReg[4 : 2] == 3'd6)? 32'h00000000 :
     32'h00000000;
 
@@ -4117,8 +4117,8 @@ module Video_System_CPU (
     (W_br_taken | R_ctrl_uncond_cti_non_br)   ? 2'b10 :
     2'b11;
 
-  assign F_pc_no_crst_nxt = (F_pc_sel_nxt == 2'b00)? 2097160 :
-    (F_pc_sel_nxt == 2'b01)? 4194824 :
+  assign F_pc_no_crst_nxt = (F_pc_sel_nxt == 2'b00)? 6291464 :
+    (F_pc_sel_nxt == 2'b01)? 131592 :
     (F_pc_sel_nxt == 2'b10)? E_arith_result[24 : 2] :
     F_pc_plus_one;
 
@@ -4129,7 +4129,7 @@ module Video_System_CPU (
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
-          F_pc <= 2097152;
+          F_pc <= 6291456;
       else if (F_pc_en)
           F_pc <= F_pc_nxt;
     end

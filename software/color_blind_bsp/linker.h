@@ -4,7 +4,7 @@
  * Machine generated for CPU 'CPU' in SOPC Builder design 'Video_System'
  * SOPC Builder design path: C:/Users/Stephen/Desktop/workspace/Extras_D5M_Video_In/verilog/Video_System.sopcinfo
  *
- * Generated: Sun Oct 11 21:56:38 PDT 2015
+ * Generated: Thu Oct 15 16:49:01 PDT 2015
  */
 
 /*
@@ -67,9 +67,9 @@
 
 #define ONCHIP_MEMORY_REGION_BASE 0x1004000
 #define ONCHIP_MEMORY_REGION_SPAN 16384
-#define RESET_REGION_BASE 0x800000
+#define RESET_REGION_BASE 0x1800000
 #define RESET_REGION_SPAN 32
-#define SDRAM_REGION_BASE 0x800020
+#define SDRAM_REGION_BASE 0x1800020
 #define SDRAM_REGION_SPAN 8388576
 
 

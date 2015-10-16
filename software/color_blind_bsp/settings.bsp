@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Oct 13, 2015 11:17:57 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1444803477487</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Oct 15, 2015 5:06:46 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1444954006084</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\Stephen\Desktop\workspace\Extras_D5M_Video_In\verilog\software\color_blind_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>C:\Users\Stephen\Desktop\workspace\Extras_D5M_Video_In\verilog\Video_System.sopcinfo</SopcDesignFile>
@@ -869,51 +869,57 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sdram</slaveDescriptor>
-                <addressRange>0x00800000 - 0x00FFFFFF</addressRange>
-                <addressSpan>8388608</addressSpan>
-                <attributes>memory</attributes>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>leds</slaveDescriptor>
-                <addressRange>0x01001000 - 0x0100100F</addressRange>
+                <addressRange>0x00081000 - 0x0008100F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>switches</slaveDescriptor>
-                <addressRange>0x01001010 - 0x0100101F</addressRange>
+                <addressRange>0x00081010 - 0x0008101F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>Video_DMA</slaveDescriptor>
-                <addressRange>0x01001020 - 0x0100102F</addressRange>
+                <addressRange>0x00081020 - 0x0008102F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>Pixel_Buffer_DMA</slaveDescriptor>
-                <addressRange>0x01001030 - 0x0100103F</addressRange>
+                <addressRange>0x00081030 - 0x0008103F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>AV_Config</slaveDescriptor>
-                <addressRange>0x01001040 - 0x0100104F</addressRange>
+                <addressRange>0x00081040 - 0x0008104F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x01001050 - 0x01001057</addressRange>
+                <addressRange>0x00081050 - 0x00081057</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>character_lcd_0</slaveDescriptor>
+                <addressRange>0x00081058 - 0x00081059</addressRange>
+                <addressSpan>2</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>Onchip_Memory</slaveDescriptor>
                 <addressRange>0x01004000 - 0x01007FFF</addressRange>
                 <addressSpan>16384</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sdram</slaveDescriptor>
+                <addressRange>0x01800000 - 0x01FFFFFF</addressRange>
+                <addressSpan>8388608</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <LinkerSection>

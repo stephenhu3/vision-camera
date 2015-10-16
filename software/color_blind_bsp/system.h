@@ -4,7 +4,7 @@
  * Machine generated for CPU 'CPU' in SOPC Builder design 'Video_System'
  * SOPC Builder design path: C:/Users/Stephen/Desktop/workspace/Extras_D5M_Video_In/verilog/Video_System.sopcinfo
  *
- * Generated: Tue Oct 13 15:15:43 PDT 2015
+ * Generated: Thu Oct 15 16:49:01 PDT 2015
  */
 
 /*
@@ -61,7 +61,7 @@
  */
 
 #define ALT_MODULE_CLASS_AV_Config altera_up_avalon_audio_and_video_config
-#define AV_CONFIG_BASE 0x1001040
+#define AV_CONFIG_BASE 0x81040
 #define AV_CONFIG_IRQ -1
 #define AV_CONFIG_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define AV_CONFIG_NAME "/dev/AV_Config"
@@ -76,7 +76,7 @@
 
 #define ALT_CPU_ARCHITECTURE "altera_nios2_qsys"
 #define ALT_CPU_BIG_ENDIAN 0
-#define ALT_CPU_BREAK_ADDR 0x1000820
+#define ALT_CPU_BREAK_ADDR 0x80820
 #define ALT_CPU_CPU_FREQ 50000000u
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
@@ -85,7 +85,7 @@
 #define ALT_CPU_DCACHE_LINE_SIZE 0
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_DCACHE_SIZE 0
-#define ALT_CPU_EXCEPTION_ADDR 0x800020
+#define ALT_CPU_EXCEPTION_ADDR 0x1800020
 #define ALT_CPU_FLUSHDA_SUPPORTED
 #define ALT_CPU_FREQ 50000000
 #define ALT_CPU_HARDWARE_DIVIDE_PRESENT 0
@@ -99,7 +99,7 @@
 #define ALT_CPU_ICACHE_SIZE 0
 #define ALT_CPU_INST_ADDR_WIDTH 0x19
 #define ALT_CPU_NAME "CPU"
-#define ALT_CPU_RESET_ADDR 0x800000
+#define ALT_CPU_RESET_ADDR 0x1800000
 
 
 /*
@@ -108,7 +108,7 @@
  */
 
 #define NIOS2_BIG_ENDIAN 0
-#define NIOS2_BREAK_ADDR 0x1000820
+#define NIOS2_BREAK_ADDR 0x80820
 #define NIOS2_CPU_FREQ 50000000u
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
@@ -117,7 +117,7 @@
 #define NIOS2_DCACHE_LINE_SIZE 0
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 0
 #define NIOS2_DCACHE_SIZE 0
-#define NIOS2_EXCEPTION_ADDR 0x800020
+#define NIOS2_EXCEPTION_ADDR 0x1800020
 #define NIOS2_FLUSHDA_SUPPORTED
 #define NIOS2_HARDWARE_DIVIDE_PRESENT 0
 #define NIOS2_HARDWARE_MULTIPLY_PRESENT 0
@@ -129,7 +129,7 @@
 #define NIOS2_ICACHE_LINE_SIZE_LOG2 0
 #define NIOS2_ICACHE_SIZE 0
 #define NIOS2_INST_ADDR_WIDTH 0x19
-#define NIOS2_RESET_ADDR 0x800000
+#define NIOS2_RESET_ADDR 0x1800000
 
 
 /*
@@ -143,6 +143,7 @@
 #define __ALTERA_AVALON_PIO
 #define __ALTERA_NIOS2_QSYS
 #define __ALTERA_UP_AVALON_AUDIO_AND_VIDEO_CONFIG
+#define __ALTERA_UP_AVALON_CHARACTER_LCD
 #define __ALTERA_UP_AVALON_SRAM
 #define __ALTERA_UP_AVALON_VIDEO_DMA_CONTROLLER
 #define __ALTERA_UP_AVALON_VIDEO_PIXEL_BUFFER_DMA
@@ -197,7 +198,7 @@
  */
 
 #define ALT_MODULE_CLASS_Pixel_Buffer_DMA altera_up_avalon_video_pixel_buffer_dma
-#define PIXEL_BUFFER_DMA_BASE 0x1001030
+#define PIXEL_BUFFER_DMA_BASE 0x81030
 #define PIXEL_BUFFER_DMA_IRQ -1
 #define PIXEL_BUFFER_DMA_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define PIXEL_BUFFER_DMA_NAME "/dev/Pixel_Buffer_DMA"
@@ -221,19 +222,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x1001050
+#define ALT_STDERR_BASE 0x81050
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x1001050
+#define ALT_STDIN_BASE 0x81050
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x1001050
+#define ALT_STDOUT_BASE 0x81050
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -247,12 +248,26 @@
  */
 
 #define ALT_MODULE_CLASS_Video_DMA altera_up_avalon_video_dma_controller
-#define VIDEO_DMA_BASE 0x1001020
+#define VIDEO_DMA_BASE 0x81020
 #define VIDEO_DMA_IRQ -1
 #define VIDEO_DMA_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define VIDEO_DMA_NAME "/dev/Video_DMA"
 #define VIDEO_DMA_SPAN 16
 #define VIDEO_DMA_TYPE "altera_up_avalon_video_dma_controller"
+
+
+/*
+ * character_lcd_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_character_lcd_0 altera_up_avalon_character_lcd
+#define CHARACTER_LCD_0_BASE 0x81058
+#define CHARACTER_LCD_0_IRQ -1
+#define CHARACTER_LCD_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define CHARACTER_LCD_0_NAME "/dev/character_lcd_0"
+#define CHARACTER_LCD_0_SPAN 2
+#define CHARACTER_LCD_0_TYPE "altera_up_avalon_character_lcd"
 
 
 /*
@@ -271,7 +286,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x1001050
+#define JTAG_UART_0_BASE 0x81050
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -289,7 +304,7 @@
  */
 
 #define ALT_MODULE_CLASS_leds altera_avalon_pio
-#define LEDS_BASE 0x1001000
+#define LEDS_BASE 0x81000
 #define LEDS_BIT_CLEARING_EDGE_REGISTER 0
 #define LEDS_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LEDS_CAPTURE 0
@@ -316,7 +331,7 @@
  */
 
 #define ALT_MODULE_CLASS_sdram altera_avalon_new_sdram_controller
-#define SDRAM_BASE 0x800000
+#define SDRAM_BASE 0x1800000
 #define SDRAM_CAS_LATENCY 3
 #define SDRAM_CONTENTS_INFO
 #define SDRAM_INIT_NOP_DELAY 0.0
@@ -355,7 +370,7 @@
  */
 
 #define ALT_MODULE_CLASS_switches altera_avalon_pio
-#define SWITCHES_BASE 0x1001010
+#define SWITCHES_BASE 0x81010
 #define SWITCHES_BIT_CLEARING_EDGE_REGISTER 0
 #define SWITCHES_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define SWITCHES_CAPTURE 0

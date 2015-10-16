@@ -1,24 +1,37 @@
 #include <stdio.h>
+#include <unistd.h>
 #include "io.h"
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
-#include <unistd.h>
+#include "altera_up_avalon_character_lcd.h"
 #define PIXEL_BUFFER_BASE (volatile unsigned int ) 0x00000000
-// pixel at (319, 119)
-#define PIXEL_BUFFER_BASE_OFFSET (volatile unsigned int ) 0x0003BA7E
 
 void write_pixel(int x, int y, short color) {
-	volatile short *vga_addr=(volatile short*)(0x00000000 + (y<<10) + (x<<1));
-	*vga_addr=color;
+	volatile short *write_addr=(volatile short*)(0x00000000 + (y<<10) + (x<<1));
+	*write_addr=color;
 }
 
 int main()
 {
-	printf("Hello from Nios II!\n");
+	printf("System Initialized\n");
+
+	alt_up_character_lcd_dev * char_lcd_dev;
+	char *first_row;
+
+	// open the Character LCD port
+	char_lcd_dev = alt_up_character_lcd_open_dev ("/dev/character_lcd_0");
+	if ( char_lcd_dev == NULL)
+		alt_printf ("Error: could not open character LCD device\n");
+	else
+		alt_printf ("Opened character LCD device\n");
+
+	/* Initialize the character display */
+	alt_up_character_lcd_init (char_lcd_dev);
 	int counter = 0;
 
 	while(1) {
 		// draw the reticle
 		// left bar
+		write_pixel(313, 240, 0xFFFF);
 		write_pixel(314, 240, 0xFFFF);
 		write_pixel(315, 240, 0xFFFF);
 		write_pixel(316, 240, 0xFFFF);
@@ -28,6 +41,7 @@ int main()
 		write_pixel(324, 240, 0xFFFF);
 		write_pixel(325, 240, 0xFFFF);
 		write_pixel(326, 240, 0xFFFF);
+		write_pixel(327, 240, 0xFFFF);
 //		// top bar
 //		write_pixel(320, 234, 0xFFFF);
 //		write_pixel(320, 235, 0xFFFF);
@@ -64,48 +78,61 @@ int main()
 			char *color;
 			int detected = 0;
 
-			if (red > 240) {
+			if (red > 155) {
 				// Either red or orange or pink or yellow
 				if (green < 120 && blue < 120) {
-					color = "Red";
+					color = "Red   \0";
 					detected = 1;
 				}
 				else if (green > 100 && blue < 100) {
-					color = "Orange";
+					color = "Orange\0";
 					detected = 1;
 				}
 				else if (green < 175 && blue > 240) {
-					color = "Pink";
+					color = "Pink  \0";
 					detected = 1;
 				}
 				else if (green > 240 && blue < 200) {
-					color = "Yellow";
+					color = "Yellow\0";
 					detected = 1;
 				}
 			} else if (green > 240) {
 				// If green
 				if (red < 180 && blue < 180) {
-					color = "Green";
+					color = "Green \0";
 					detected = 1;
 				}
 			} else if (blue > 240) {
 				// Either indigo, violet, or blue
 				if (red < 50 && green < 130) {
-					color = "Indigo";
+					color = "Indigo\0";
 					detected = 1;
 				}
 				else if (red < 130 && green < 130) {
-					color = "Violet";
+					color = "Violet\0";
 					detected = 1;
 				}
-				else if (red < 75 && green < 200) {
-					color = "Blue";
+				else if (red < 110 && green < 200) {
+					color = "Blue  \0";
 					detected = 1;
 				}
 			}
 
-			if (detected == 1)
+			if (detected == 1) {
 				printf("Color Detected: %s\n", color);
+				first_row = "Color Detected:\0";
+				alt_up_character_lcd_set_cursor_pos(char_lcd_dev, 0, 0);
+				alt_up_character_lcd_string(char_lcd_dev, first_row);
+				alt_up_character_lcd_set_cursor_pos(char_lcd_dev, 0, 1);
+				alt_up_character_lcd_string(char_lcd_dev, color);
+			} else {
+				// Blank the LCD
+				first_row = "               \0";
+				alt_up_character_lcd_set_cursor_pos(char_lcd_dev, 0, 0);
+				alt_up_character_lcd_string(char_lcd_dev, first_row);
+				alt_up_character_lcd_set_cursor_pos(char_lcd_dev, 0, 1);
+				alt_up_character_lcd_string(char_lcd_dev, first_row);
+			}
 		}
   }
   return 0;

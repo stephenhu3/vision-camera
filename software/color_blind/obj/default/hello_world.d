@@ -5,7 +5,12 @@ obj/default/hello_world.o: hello_world.c ../color_blind_bsp//HAL/inc/io.h \
   ../color_blind_bsp//HAL/inc/sys/alt_dev.h ../color_blind_bsp/system.h \
   ../color_blind_bsp/linker.h ../color_blind_bsp//HAL/inc/sys/alt_llist.h \
   ../color_blind_bsp//HAL/inc/priv/alt_dev_llist.h \
-  ../color_blind_bsp//HAL/inc/sys/alt_llist.h
+  ../color_blind_bsp//HAL/inc/sys/alt_llist.h \
+  ../color_blind_bsp//drivers/inc/altera_up_avalon_character_lcd.h \
+  ../color_blind_bsp//HAL/inc/sys/alt_alarm.h \
+  ../color_blind_bsp//HAL/inc/sys/alt_llist.h \
+  ../color_blind_bsp//HAL/inc/priv/alt_alarm.h \
+  ../color_blind_bsp//HAL/inc/sys/alt_warning.h
 
 ../color_blind_bsp//HAL/inc/io.h:
 
@@ -26,3 +31,13 @@ obj/default/hello_world.o: hello_world.c ../color_blind_bsp//HAL/inc/io.h \
 ../color_blind_bsp//HAL/inc/priv/alt_dev_llist.h:
 
 ../color_blind_bsp//HAL/inc/sys/alt_llist.h:
+
+../color_blind_bsp//drivers/inc/altera_up_avalon_character_lcd.h:
+
+../color_blind_bsp//HAL/inc/sys/alt_alarm.h:
+
+../color_blind_bsp//HAL/inc/sys/alt_llist.h:
+
+../color_blind_bsp//HAL/inc/priv/alt_alarm.h:
+
+../color_blind_bsp//HAL/inc/sys/alt_warning.h:

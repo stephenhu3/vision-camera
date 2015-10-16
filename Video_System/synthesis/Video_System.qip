@@ -2,7 +2,7 @@ set_global_assignment -entity "Video_System" -library "Video_System" -name IP_TO
 set_global_assignment -entity "Video_System" -library "Video_System" -name IP_TOOL_VERSION "13.0sp1"
 set_global_assignment -entity "Video_System" -library "Video_System" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "Video_System" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../Video_System.sopcinfo"]
-set_instance_assignment -entity "Video_System" -library "Video_System" -name SLD_INFO "QSYS_NAME Video_System HAS_SOPCINFO 1 GENERATION_ID 1444774306"
+set_instance_assignment -entity "Video_System" -library "Video_System" -name SLD_INFO "QSYS_NAME Video_System HAS_SOPCINFO 1 GENERATION_ID 1444952349"
 set_global_assignment -library "Video_System" -name MISC_FILE [file join $::quartus(qip_path) "../../Video_System.cmp"]
 set_global_assignment -name SYNTHESIS_ONLY_QIP ON
 set_global_assignment -library "Video_System" -name MISC_FILE [file join $::quartus(qip_path) "../../Video_System.qsys"]
@@ -15,6 +15,7 @@ set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file joi
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_merlin_arbitrator.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_mux_001.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_mux.sv"]
+set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_demux_010.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_demux_009.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_demux_003.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_rsp_xbar_demux_002.sv"]
@@ -29,6 +30,7 @@ set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::q
 set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_reset_synchronizer.v"]
 set_global_assignment -library "Video_System" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_reset_controller.sdc"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_merlin_burst_adapter.sv"]
+set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_id_router_010.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_id_router_009.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_id_router_003.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_id_router_002.sv"]
@@ -41,6 +43,9 @@ set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file joi
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_merlin_master_agent.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_merlin_slave_translator.sv"]
 set_global_assignment -library "Video_System" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_merlin_master_translator.sv"]
+set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_up_character_lcd_communication.v"]
+set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_up_character_lcd_initialization.v"]
+set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_character_lcd_0.v"]
 set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_leds.v"]
 set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_switches.v"]
 set_global_assignment -library "Video_System" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Video_System_jtag_uart_0.v"]
@@ -111,6 +116,9 @@ set_global_assignment -entity "Video_System_rsp_xbar_mux_001" -library "Video_Sy
 set_global_assignment -entity "Video_System_rsp_xbar_mux" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_multiplexer"
 set_global_assignment -entity "Video_System_rsp_xbar_mux" -library "Video_System" -name IP_TOOL_VERSION "13.0"
 set_global_assignment -entity "Video_System_rsp_xbar_mux" -library "Video_System" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "Video_System_rsp_xbar_demux_010" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_demultiplexer"
+set_global_assignment -entity "Video_System_rsp_xbar_demux_010" -library "Video_System" -name IP_TOOL_VERSION "13.0"
+set_global_assignment -entity "Video_System_rsp_xbar_demux_010" -library "Video_System" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -entity "Video_System_rsp_xbar_demux_009" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_demultiplexer"
 set_global_assignment -entity "Video_System_rsp_xbar_demux_009" -library "Video_System" -name IP_TOOL_VERSION "13.0"
 set_global_assignment -entity "Video_System_rsp_xbar_demux_009" -library "Video_System" -name IP_TOOL_ENV "Qsys"
@@ -147,6 +155,9 @@ set_global_assignment -entity "altera_reset_controller" -library "Video_System" 
 set_global_assignment -entity "altera_merlin_burst_adapter" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_burst_adapter"
 set_global_assignment -entity "altera_merlin_burst_adapter" -library "Video_System" -name IP_TOOL_VERSION "13.0"
 set_global_assignment -entity "altera_merlin_burst_adapter" -library "Video_System" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "Video_System_id_router_010" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_router"
+set_global_assignment -entity "Video_System_id_router_010" -library "Video_System" -name IP_TOOL_VERSION "13.0"
+set_global_assignment -entity "Video_System_id_router_010" -library "Video_System" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -entity "Video_System_id_router_009" -library "Video_System" -name IP_TOOL_NAME "altera_merlin_router"
 set_global_assignment -entity "Video_System_id_router_009" -library "Video_System" -name IP_TOOL_VERSION "13.0"
 set_global_assignment -entity "Video_System_id_router_009" -library "Video_System" -name IP_TOOL_ENV "Qsys"

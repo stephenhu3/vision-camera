@@ -3,7 +3,7 @@
 # Machine generated for CPU 'CPU' in SOPC Builder design 'Video_System'
 # SOPC Builder design path: C:/Users/Stephen/Desktop/workspace/Extras_D5M_Video_In/verilog/Video_System.sopcinfo
 #
-# Generated: Sun Oct 11 21:56:38 PDT 2015
+# Generated: Thu Oct 15 16:49:01 PDT 2015
 
 # DO NOT MODIFY THIS FILE
 #
@@ -46,8 +46,8 @@
 # The cache attribute is specified which improves GDB performance
 # by allowing GDB to cache memory contents on the host.
 
-# sdram
-memory 0x800000 0x1000000 cache
-
 # Onchip_Memory
 memory 0x1004000 0x1008000 cache
+
+# sdram
+memory 0x1800000 0x2000000 cache

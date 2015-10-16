@@ -84,7 +84,15 @@ module D5M_Video_In (
 	VGA_SYNC,
 	VGA_R,
 	VGA_G,
-	VGA_B
+	VGA_B,
+	
+	// LCD
+	LCD_DATA,
+	LCD_ON,
+	LCD_BLON,
+	LCD_EN,
+	LCD_RS,
+	LCD_RW
 );
 
 /*****************************************************************************
@@ -140,6 +148,14 @@ output		[ 9: 0]	VGA_G;
 output		[ 9: 0]	VGA_B;
 input [7:0] SW;
 output [7:0] LEDG;
+
+// LCD
+inout [ 7: 0]		LCD_DATA;
+output 				LCD_ON;
+output 				LCD_BLON;
+output 				LCD_EN;
+output 				LCD_RS;
+output 				LCD_RW;
 
 
 /*****************************************************************************
@@ -241,6 +257,13 @@ Video_System Char_Buffer_System (
    .sdram_wire_dqm                                      ({DRAM_UDQM, DRAM_LDQM}),                                      //                                    .dqm
    .sdram_wire_ras_n                                    (DRAM_RAS_N),                                    //                                    .ras_n
    .sdram_wire_we_n                                     (DRAM_WE_N),                                     //                                    .we_n
+	
+	.lcd_data_DATA                                       (LCD_DATA),                                       //                            lcd_data.DATA
+	.lcd_data_ON                                         (LCD_ON),                                         //                                    .ON
+	.lcd_data_BLON                                       (LCD_BLON),                                       //                                    .BLON
+	.lcd_data_EN                                         (LCD_EN),                                         //                                    .EN
+	.lcd_data_RS                                         (LCD_RS),                                         //                                    .RS
+	.lcd_data_RW                                         (LCD_RW),                                          //                                    .RW
 );
 
 endmodule

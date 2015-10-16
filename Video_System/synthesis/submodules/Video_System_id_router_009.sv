@@ -50,9 +50,9 @@ module Video_System_id_router_009_default_decode
                DEFAULT_DESTID = 0 
    )
   (output [78 - 75 : 0] default_destination_id,
-   output [10-1 : 0] default_wr_channel,
-   output [10-1 : 0] default_rd_channel,
-   output [10-1 : 0] default_src_channel
+   output [11-1 : 0] default_wr_channel,
+   output [11-1 : 0] default_rd_channel,
+   output [11-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
@@ -63,7 +63,7 @@ module Video_System_id_router_009_default_decode
       assign default_src_channel = '0;
     end
     else begin
-      assign default_src_channel = 10'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 11'b1 << DEFAULT_CHANNEL;
     end
   end
   endgenerate
@@ -74,8 +74,8 @@ module Video_System_id_router_009_default_decode
       assign default_rd_channel = '0;
     end
     else begin
-      assign default_wr_channel = 10'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 10'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 11'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 11'b1 << DEFAULT_RD_CHANNEL;
     end
   end
   endgenerate
@@ -105,7 +105,7 @@ module Video_System_id_router_009
     // -------------------
     output                          src_valid,
     output reg [89-1    : 0] src_data,
-    output reg [10-1 : 0] src_channel,
+    output reg [11-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -121,7 +121,7 @@ module Video_System_id_router_009
     localparam PKT_PROTECTION_H = 82;
     localparam PKT_PROTECTION_L = 80;
     localparam ST_DATA_W = 89;
-    localparam ST_CHANNEL_W = 10;
+    localparam ST_CHANNEL_W = 11;
     localparam DECODER_TYPE = 1;
 
     localparam PKT_TRANS_WRITE = 52;
@@ -161,7 +161,7 @@ module Video_System_id_router_009
     assign src_endofpacket   = sink_endofpacket;
 
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [10-1 : 0] default_src_channel;
+    wire [11-1 : 0] default_src_channel;
 
 
 
@@ -187,15 +187,15 @@ module Video_System_id_router_009
 
 
         if (destid == 0 ) begin
-            src_channel = 10'b001;
+            src_channel = 11'b001;
         end
 
         if (destid == 2 ) begin
-            src_channel = 10'b010;
+            src_channel = 11'b010;
         end
 
         if (destid == 3 ) begin
-            src_channel = 10'b100;
+            src_channel = 11'b100;
         end
 
 
