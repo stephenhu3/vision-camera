@@ -4,80 +4,118 @@
 #include "altera_up_avalon_video_pixel_buffer_dma.h"
 #include "altera_up_avalon_character_lcd.h"
 #define PIXEL_BUFFER_BASE (volatile unsigned int ) 0x00000000
+#define RETICLE_COLOR (volatile unsigned int) 0xFFFF
 
 void write_pixel(int x, int y, short color) {
 	volatile short *write_addr=(volatile short*)(0x00000000 + (y<<10) + (x<<1));
 	*write_addr=color;
 }
 
-int main()
-{
+int main() {
 	printf("System Initialized\n");
-
+	volatile unsigned int base = PIXEL_BUFFER_BASE;
 	alt_up_character_lcd_dev * char_lcd_dev;
 	char *first_row;
-
-	// open the Character LCD port
+	// Open the Character LCD port
 	char_lcd_dev = alt_up_character_lcd_open_dev ("/dev/character_lcd_0");
 	if ( char_lcd_dev == NULL)
 		alt_printf ("Error: could not open character LCD device\n");
 	else
 		alt_printf ("Opened character LCD device\n");
 
-	/* Initialize the character display */
+	// Initialize the character display
 	alt_up_character_lcd_init (char_lcd_dev);
 	int counter = 0;
 
 	while(1) {
-		// draw the reticle
-		// left bar
-		write_pixel(312, 240, 0xFFFF);
-		write_pixel(313, 240, 0xFFFF);
-		write_pixel(314, 240, 0xFFFF);
-		write_pixel(315, 240, 0xFFFF);
-		write_pixel(316, 240, 0xFFFF);
-		// right bar
-		write_pixel(324, 240, 0xFFFF);
-		write_pixel(325, 240, 0xFFFF);
-		write_pixel(326, 240, 0xFFFF);
-		write_pixel(327, 240, 0xFFFF);
-		write_pixel(328, 240, 0xFFFF);
-//		// top bar
-//		write_pixel(320, 234, 0xFFFF);
-//		write_pixel(320, 235, 0xFFFF);
-//		write_pixel(320, 236, 0xFFFF);
-//		write_pixel(320, 237, 0xFFFF);
-//		// bottom bar
-//		write_pixel(320, 243, 0xFFFF);
-//		write_pixel(320, 244, 0xFFFF);
-//		write_pixel(320, 245, 0xFFFF);
-//		write_pixel(320, 246, 0xFFFF);
+		// Draw the reticle
+		int m;
+		int n;
+		// Left bar
+		for (m = 312; m <= 324; m++)
+			write_pixel(m, 240, RETICLE_COLOR);
+		// Right bar
+		for (n = 312; n <= 328; n++)
+			write_pixel(n, 240, RETICLE_COLOR);
 
 		counter++;
 		// Log color info every 10000 iterations
 		if (counter > 10000) {
-			int x = 319;
-			int y = 119;
-			volatile unsigned int base = PIXEL_BUFFER_BASE;
-			volatile unsigned int offset = (x | (y << 10)) << 1;
-			volatile unsigned int position = base + offset;
-			unsigned int val = IORD_16DIRECT(position, 0);
-			int red = (val & (0x1F << 11)) >> 11;
-			red *= (255/31); // convert to 255 RGB scheme
-			// 0x1F is 11111
-			int green = (val & (0x3F << 5)) >> 5;
-			green *= (255/63); // convert to 255 RGB scheme
-			// 0x3F = 111111
-			int blue = (val & 0x1F);
-			blue *= (255/31); // convert to 255 RGB scheme
-			// 0x1F is 11111
-			counter = 0;
-			printf("Pixel: (%d, %d) ", x, y);
-			printf("Red: %d Green: %d Blue: %d\n", red, green, blue);
-			//Log the color detected (Red, Orange, Yellow, Green, Blue, Indigo, Violet, Pink)
-			char *color;
+			volatile unsigned int redSampled = 0;
+			volatile unsigned int greenSampled = 0;
+			volatile unsigned int blueSampled = 0;
+			volatile unsigned int red;
+			volatile unsigned int green;
+			volatile unsigned int blue;
+			volatile unsigned int position;
+			volatile unsigned int offset;
+			volatile unsigned int val;
 			int detected = 0;
+			int i;
+			int j;
+			int x;
+			int y;
+			char *color;
+			/*
+			Sample center 5 pixels in "+" reticle shape
+		   (318, 119) to (320, 119)
+		   (319, 118) to (319, 120) 
+		   	*/
+			// Across horizonally
+			for (i = 318; i <= 320; i++) {
+				x = i;
+				y = 119;
+				offset = (x | (y << 10)) << 1;
+				position = base + offset;
+				val = IORD_16DIRECT(position, 0);
+				red = (val & (0x1F << 11)) >> 11;
+				red *= (255/31); // convert to 255 RGB scheme
+				redSampled += red;
+				// 0x1F is 11111
+				green = (val & (0x3F << 5)) >> 5;
+				green *= (255/63); // convert to 255 RGB scheme
+				greenSampled += green;
+				// 0x3F = 111111
+				blue = (val & 0x1F);
+				blue *= (255/31); // convert to 255 RGB scheme
+				blueSampled += blue;
+				// 0x1F is 11111
+				printf("Pixel: (%d, %d) RGB: (%d, %d, %d)\n", x, y, red, green, blue);
+			}
 
+			// Down vertically
+			for (j = 118; j <= 120; j++) {
+				// (319, 119) was covered already by previous loop
+				if (j == 119)
+					continue;
+				x = 319;
+				y = j;
+				offset = (x | (y << 10)) << 1;
+				position = base + offset;
+				val = IORD_16DIRECT(position, 0);
+				red = (val & (0x1F << 11)) >> 11;
+				red *= (255/31); // convert to 255 RGB scheme
+				redSampled += red;
+				// 0x1F is 11111
+				green = (val & (0x3F << 5)) >> 5;
+				green *= (255/63); // convert to 255 RGB scheme
+				greenSampled += green;
+				// 0x3F = 111111
+				blue = (val & 0x1F);
+				blue *= (255/31); // convert to 255 RGB scheme
+				blueSampled += blue;
+				// 0x1F is 11111
+				printf("Pixel: (%d, %d) RGB: (%d, %d, %d)\n", x, y, red, green, blue);
+			}
+
+			// Take the average of the 5 RGB values sampled
+			redSampled /= 5;
+			greenSampled /= 5;
+			blueSampled /= 5;
+			
+			printf("Sampled Values: Red: %d Green: %d Blue: %d\n", redSampled, greenSampled, blueSampled);
+			
+			//Log the color detected (Red, Orange, Yellow, Green, Blue, Indigo, Violet, Pink)
 			if (red > 155) {
 				// Either red or orange or pink or yellow
 				if (green < 120 && blue < 120) {
@@ -133,8 +171,9 @@ int main()
 				alt_up_character_lcd_set_cursor_pos(char_lcd_dev, 0, 1);
 				alt_up_character_lcd_string(char_lcd_dev, first_row);
 			}
+			counter = 0;
 		}
-  }
-  return 0;
+  	}
+	return 0;
 }
 
