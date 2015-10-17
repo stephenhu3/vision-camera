@@ -96,16 +96,16 @@ module D5M_Video_In (
  *                             Port Declarations                             *
  *****************************************************************************/
 // Inputs
-input				CLOCK_50;
+input					CLOCK_50;
 input		[ 3: 0]	KEY;
-input 		[ 7: 0] SW;
+input 	[ 7: 0]	SW;
 
 // GPIO
 inout		[35: 0]	GPIO_1;
 
 // SRAM
 inout		[15: 0]	SRAM_DQ;
-output		[17: 0]	SRAM_ADDR;
+output	[17: 0]	SRAM_ADDR;
 output				SRAM_CE_N;
 output				SRAM_WE_N;
 output				SRAM_OE_N;
@@ -114,7 +114,7 @@ output				SRAM_LB_N;
 
 // SDRAM
 inout		[15: 0]	DRAM_DQ;
-output		[11: 0]	DRAM_ADDR;
+output	[11: 0]	DRAM_ADDR;
 output 			 	DRAM_BA_1, DRAM_BA_0;
 output 				DRAM_CAS_N;
 output 				DRAM_CKE;
@@ -130,13 +130,13 @@ output				VGA_HS;
 output				VGA_VS;
 output				VGA_BLANK;
 output				VGA_SYNC;
-output		[ 9: 0]	VGA_R;
-output		[ 9: 0]	VGA_G;
-output		[ 9: 0]	VGA_B;
-output 		[ 7: 0] LEDG;
+output	[ 9: 0]	VGA_R;
+output	[ 9: 0]	VGA_G;
+output	[ 9: 0]	VGA_B;
+output 	[ 7: 0] 	LEDG;
 
 // LCD
-inout 		[ 7: 0]	LCD_DATA;
+inout 	[ 7: 0]	LCD_DATA;
 output 				LCD_ON;
 output 				LCD_BLON;
 output 				LCD_EN;
@@ -176,47 +176,47 @@ assign	CCD_DATA[11]=	GPIO_1[1];
  *****************************************************************************/
 
 Video_System Char_Buffer_System (
-	.clk_clk								(CLOCK_50),
-	.reset_reset_n							(KEY[0]),
-	.vga_clk								(GPIO_1[16]),
-	.sdram_clk_clk 							(DRAM_CLK),
-	.switches_export 						(SW),
-	.leds_export 							(LEDG),
+	.clk_clk											 (CLOCK_50),
+	.reset_reset_n									 (KEY[0]),
+	.vga_clk											 (GPIO_1[16]),
+	.sdram_clk_clk 								 (DRAM_CLK),
+	.switches_export 								 (SW),
+	.leds_export 									 (LEDG),
 
-	.SRAM_DQ_to_and_from_the_Pixel_Buffer	(SRAM_DQ),
-	.SRAM_ADDR_from_the_Pixel_Buffer		(SRAM_ADDR),
-	.SRAM_LB_N_from_the_Pixel_Buffer		(SRAM_LB_N),
-	.SRAM_UB_N_from_the_Pixel_Buffer		(SRAM_UB_N),
-	.SRAM_CE_N_from_the_Pixel_Buffer		(SRAM_CE_N),
-	.SRAM_OE_N_from_the_Pixel_Buffer		(SRAM_OE_N),
-	.SRAM_WE_N_from_the_Pixel_Buffer		(SRAM_WE_N),
+	.SRAM_DQ_to_and_from_the_Pixel_Buffer	 (SRAM_DQ),
+	.SRAM_ADDR_from_the_Pixel_Buffer			 (SRAM_ADDR),
+	.SRAM_LB_N_from_the_Pixel_Buffer			 (SRAM_LB_N),
+	.SRAM_UB_N_from_the_Pixel_Buffer			 (SRAM_UB_N),
+	.SRAM_CE_N_from_the_Pixel_Buffer			 (SRAM_CE_N),
+	.SRAM_OE_N_from_the_Pixel_Buffer			 (SRAM_OE_N),
+	.SRAM_WE_N_from_the_Pixel_Buffer			 (SRAM_WE_N),
 
-	.PIXEL_CLK_to_the_Video_In_Decoder		(GPIO_1[0]),
-	.PIXEL_DATA_to_the_Video_In_Decoder		(CCD_DATA),
-	.LINE_VALID_to_the_Video_In_Decoder		(GPIO_1[21]),
-	.FRAME_VALID_to_the_Video_In_Decoder	(GPIO_1[22]),
+	.PIXEL_CLK_to_the_Video_In_Decoder		 (GPIO_1[0]),
+	.PIXEL_DATA_to_the_Video_In_Decoder		 (CCD_DATA),
+	.LINE_VALID_to_the_Video_In_Decoder		 (GPIO_1[21]),
+	.FRAME_VALID_to_the_Video_In_Decoder	 (GPIO_1[22]),
 
-	.I2C_SCLK_from_the_AV_Config			(GPIO_1[24]),
-	.I2C_SDAT_to_and_from_the_AV_Config		(GPIO_1[23]),
+	.I2C_SCLK_from_the_AV_Config				 (GPIO_1[24]),
+	.I2C_SDAT_to_and_from_the_AV_Config		 (GPIO_1[23]),
 
-	.VGA_CLK_from_the_VGA_Controller		(VGA_CLK),
-	.VGA_HS_from_the_VGA_Controller			(VGA_HS),
-	.VGA_VS_from_the_VGA_Controller			(VGA_VS),
-	.VGA_BLANK_from_the_VGA_Controller		(VGA_BLANK),
-	.VGA_SYNC_from_the_VGA_Controller		(VGA_SYNC),
-	.VGA_R_from_the_VGA_Controller			(VGA_R),
-	.VGA_G_from_the_VGA_Controller			(VGA_G),
-	.VGA_B_from_the_VGA_Controller			(VGA_B),
+	.VGA_CLK_from_the_VGA_Controller			 (VGA_CLK),
+	.VGA_HS_from_the_VGA_Controller			 (VGA_HS),
+	.VGA_VS_from_the_VGA_Controller			 (VGA_VS),
+	.VGA_BLANK_from_the_VGA_Controller		 (VGA_BLANK),
+	.VGA_SYNC_from_the_VGA_Controller		 (VGA_SYNC),
+	.VGA_R_from_the_VGA_Controller			 (VGA_R),
+	.VGA_G_from_the_VGA_Controller			 (VGA_G),
+	.VGA_B_from_the_VGA_Controller			 (VGA_B),
 
-	.sdram_wire_addr						(DRAM_ADDR),
-	.sdram_wire_ba							({DRAM_BA_1, DRAM_BA_0}),
-	.sdram_wire_cas_n						(DRAM_CAS_N),
-	.sdram_wire_cke							(DRAM_CKE),
-	.sdram_wire_cs_n						(DRAM_CS_N),
-	.sdram_wire_dq							(DRAM_DQ),
-	.sdram_wire_dqm							({DRAM_UDQM, DRAM_LDQM}),
-	.sdram_wire_ras_n						(DRAM_RAS_N),
-	.sdram_wire_we_n						(DRAM_WE_N),
+	.sdram_wire_addr								 (DRAM_ADDR),
+	.sdram_wire_ba									 ({DRAM_BA_1, DRAM_BA_0}),
+	.sdram_wire_cas_n								 (DRAM_CAS_N),
+	.sdram_wire_cke								 (DRAM_CKE),
+	.sdram_wire_cs_n								 (DRAM_CS_N),
+	.sdram_wire_dq									 (DRAM_DQ),
+	.sdram_wire_dqm								 ({DRAM_UDQM, DRAM_LDQM}),
+	.sdram_wire_ras_n								 (DRAM_RAS_N),
+	.sdram_wire_we_n								 (DRAM_WE_N),
 	
 	.lcd_data_DATA                          (LCD_DATA),
 	.lcd_data_ON                            (LCD_ON),
