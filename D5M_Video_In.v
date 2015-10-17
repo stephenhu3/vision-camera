@@ -41,42 +41,36 @@
 module D5M_Video_In (
 	// Inputs
 	CLOCK_50,
-	KEY,
-	LEDG,
+	KEY,	
 	SW,
 
-	// Bidirectionals
-	//  Memory (SRAM)
-	SRAM_DQ,
-	
-	//  GPIO_1
+	// GPIO
 	GPIO_1,
-	
-	// Outputs
-	// 	Memory (SRAM)
-	SRAM_ADDR,
 
+	// SRAM
+	SRAM_DQ,
+	SRAM_ADDR,
 	SRAM_CE_N,
 	SRAM_WE_N,
 	SRAM_OE_N,
 	SRAM_UB_N,
 	SRAM_LB_N,
 
-	// (SDRAM)
+	// SDRAM
 	DRAM_ADDR,
-   DRAM_BA_1,
+	DRAM_BA_1,
 	DRAM_BA_0,
 	DRAM_CLK,
-    DRAM_CAS_N,
-    DRAM_CKE,
-    DRAM_CS_N,
-    DRAM_DQ,
-    DRAM_UDQM,
-	 DRAM_LDQM,
-    DRAM_RAS_N,
-    DRAM_WE_N,
+	DRAM_CAS_N,
+	DRAM_CKE,
+	DRAM_CS_N,
+	DRAM_DQ,
+	DRAM_UDQM,
+	DRAM_LDQM,
+	DRAM_RAS_N,
+	DRAM_WE_N,
 	
-	//  VGA
+	// VGA
 	VGA_CLK,
 	VGA_HS,
 	VGA_VS,
@@ -92,13 +86,11 @@ module D5M_Video_In (
 	LCD_BLON,
 	LCD_EN,
 	LCD_RS,
-	LCD_RW
+	LCD_RW,
+
+	// LED
+	LEDG
 );
-
-/*****************************************************************************
- *                           Parameter Declarations                          *
- *****************************************************************************/
-
 
 /*****************************************************************************
  *                             Port Declarations                             *
@@ -106,19 +98,13 @@ module D5M_Video_In (
 // Inputs
 input				CLOCK_50;
 input		[ 3: 0]	KEY;
+input 		[ 7: 0] SW;
 
-// Bidirectionals
-// 	Memory (SRAM)
-inout		[15: 0]	SRAM_DQ;
-
-// Memory (SDRAM)
-inout		[15:0]DRAM_DQ;
-
-//  GPIO_1
+// GPIO
 inout		[35: 0]	GPIO_1;
 
-// Outputs
-// 	Memory (SRAM)
+// SRAM
+inout		[15: 0]	SRAM_DQ;
 output		[17: 0]	SRAM_ADDR;
 output				SRAM_CE_N;
 output				SRAM_WE_N;
@@ -126,7 +112,8 @@ output				SRAM_OE_N;
 output				SRAM_UB_N;
 output				SRAM_LB_N;
 
-// Memory (SDRAM)
+// SDRAM
+inout		[15: 0]	DRAM_DQ;
 output		[11: 0]	DRAM_ADDR;
 output 			 	DRAM_BA_1, DRAM_BA_0;
 output 				DRAM_CAS_N;
@@ -137,7 +124,7 @@ output 				DRAM_RAS_N;
 output				DRAM_CLK;
 output 				DRAM_WE_N;
 
-//  VGA
+// VGA
 output				VGA_CLK;
 output				VGA_HS;
 output				VGA_VS;
@@ -146,41 +133,21 @@ output				VGA_SYNC;
 output		[ 9: 0]	VGA_R;
 output		[ 9: 0]	VGA_G;
 output		[ 9: 0]	VGA_B;
-input [7:0] SW;
-output [7:0] LEDG;
+output 		[ 7: 0] LEDG;
 
 // LCD
-inout [ 7: 0]		LCD_DATA;
+inout 		[ 7: 0]	LCD_DATA;
 output 				LCD_ON;
 output 				LCD_BLON;
 output 				LCD_EN;
 output 				LCD_RS;
 output 				LCD_RW;
 
-
 /*****************************************************************************
  *                 Internal Wires and Registers Declarations                 *
  *****************************************************************************/
 // Internal Wires
 wire		[11: 0]	CCD_DATA;
-
-// Internal Registers
-
-// State Machine Registers
-
-/*****************************************************************************
- *                         Finite State Machine(s)                           *
- *****************************************************************************/
-
-
-/*****************************************************************************
- *                             Sequential Logic                              *
- *****************************************************************************/
-
-
-// Output Registers
-
-// Internal Registers
 
 /*****************************************************************************
  *                            Combinational Logic                            *
@@ -209,17 +176,13 @@ assign	CCD_DATA[11]=	GPIO_1[1];
  *****************************************************************************/
 
 Video_System Char_Buffer_System (
-	// 1) global signals:
-	.clk_clk									(CLOCK_50),
-	.reset_reset_n								(KEY[0]),
+	.clk_clk								(CLOCK_50),
+	.reset_reset_n							(KEY[0]),
 	.vga_clk								(GPIO_1[16]),
-	// added
-	.sdram_clk_clk (DRAM_CLK),
-	// added
-	.switches_export (SW),
-	.leds_export (LEDG),
+	.sdram_clk_clk 							(DRAM_CLK),
+	.switches_export 						(SW),
+	.leds_export 							(LEDG),
 
-	// the_Pixel_Buffer
 	.SRAM_DQ_to_and_from_the_Pixel_Buffer	(SRAM_DQ),
 	.SRAM_ADDR_from_the_Pixel_Buffer		(SRAM_ADDR),
 	.SRAM_LB_N_from_the_Pixel_Buffer		(SRAM_LB_N),
@@ -228,17 +191,14 @@ Video_System Char_Buffer_System (
 	.SRAM_OE_N_from_the_Pixel_Buffer		(SRAM_OE_N),
 	.SRAM_WE_N_from_the_Pixel_Buffer		(SRAM_WE_N),
 
-	// the_Video_In_Decoder
 	.PIXEL_CLK_to_the_Video_In_Decoder		(GPIO_1[0]),
 	.PIXEL_DATA_to_the_Video_In_Decoder		(CCD_DATA),
 	.LINE_VALID_to_the_Video_In_Decoder		(GPIO_1[21]),
 	.FRAME_VALID_to_the_Video_In_Decoder	(GPIO_1[22]),
 
-	// the_AV_Config
 	.I2C_SCLK_from_the_AV_Config			(GPIO_1[24]),
 	.I2C_SDAT_to_and_from_the_AV_Config		(GPIO_1[23]),
 
-	// the_vga_controller
 	.VGA_CLK_from_the_VGA_Controller		(VGA_CLK),
 	.VGA_HS_from_the_VGA_Controller			(VGA_HS),
 	.VGA_VS_from_the_VGA_Controller			(VGA_VS),
@@ -248,22 +208,22 @@ Video_System Char_Buffer_System (
 	.VGA_G_from_the_VGA_Controller			(VGA_G),
 	.VGA_B_from_the_VGA_Controller			(VGA_B),
 
-	.sdram_wire_addr                                     (DRAM_ADDR),                                     //                          sdram_wire.addr
-   .sdram_wire_ba                                       ({DRAM_BA_1, DRAM_BA_0}),                                       //                                    .ba
-   .sdram_wire_cas_n                                    (DRAM_CAS_N),                                    //                                    .cas_n
-   .sdram_wire_cke                                      (DRAM_CKE),                                      //                                    .cke
-   .sdram_wire_cs_n                                     (DRAM_CS_N),                                     //                                    .cs_n
-   .sdram_wire_dq                                       (DRAM_DQ),                                       //                                    .dq
-   .sdram_wire_dqm                                      ({DRAM_UDQM, DRAM_LDQM}),                                      //                                    .dqm
-   .sdram_wire_ras_n                                    (DRAM_RAS_N),                                    //                                    .ras_n
-   .sdram_wire_we_n                                     (DRAM_WE_N),                                     //                                    .we_n
+	.sdram_wire_addr						(DRAM_ADDR),
+	.sdram_wire_ba							({DRAM_BA_1, DRAM_BA_0}),
+	.sdram_wire_cas_n						(DRAM_CAS_N),
+	.sdram_wire_cke							(DRAM_CKE),
+	.sdram_wire_cs_n						(DRAM_CS_N),
+	.sdram_wire_dq							(DRAM_DQ),
+	.sdram_wire_dqm							({DRAM_UDQM, DRAM_LDQM}),
+	.sdram_wire_ras_n						(DRAM_RAS_N),
+	.sdram_wire_we_n						(DRAM_WE_N),
 	
-	.lcd_data_DATA                                       (LCD_DATA),                                       //                            lcd_data.DATA
-	.lcd_data_ON                                         (LCD_ON),                                         //                                    .ON
-	.lcd_data_BLON                                       (LCD_BLON),                                       //                                    .BLON
-	.lcd_data_EN                                         (LCD_EN),                                         //                                    .EN
-	.lcd_data_RS                                         (LCD_RS),                                         //                                    .RS
-	.lcd_data_RW                                         (LCD_RW),                                          //                                    .RW
+	.lcd_data_DATA                          (LCD_DATA),
+	.lcd_data_ON                            (LCD_ON),
+	.lcd_data_BLON                          (LCD_BLON),
+	.lcd_data_EN                            (LCD_EN),
+	.lcd_data_RS                            (LCD_RS),
+	.lcd_data_RW                            (LCD_RW),
 );
 
 endmodule
