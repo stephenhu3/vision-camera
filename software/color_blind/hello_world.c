@@ -32,10 +32,10 @@ int main() {
 		int m;
 		int n;
 		// Left bar
-		for (m = 312; m <= 324; m++)
+		for (m = 312; m <= 316; m++)
 			write_pixel(m, 240, RETICLE_COLOR);
 		// Right bar
-		for (n = 312; n <= 328; n++)
+		for (n = 324; n <= 328; n++)
 			write_pixel(n, 240, RETICLE_COLOR);
 
 		counter++;
@@ -59,7 +59,7 @@ int main() {
 			/*
 			Sample center 5 pixels in "+" reticle shape
 		   (318, 119) to (320, 119)
-		   (319, 118) to (319, 120) 
+		   (319, 118) to (319, 120)
 		   	*/
 			// Across horizonally
 			for (i = 318; i <= 320; i++) {
@@ -112,9 +112,9 @@ int main() {
 			redSampled /= 5;
 			greenSampled /= 5;
 			blueSampled /= 5;
-			
+
 			printf("Sampled Values: Red: %d Green: %d Blue: %d\n", redSampled, greenSampled, blueSampled);
-			
+
 			//Log the color detected (Red, Orange, Yellow, Green, Blue, Indigo, Violet, Pink)
 			if (red > 155) {
 				// Either red or orange or pink or yellow
@@ -176,4 +176,3 @@ int main() {
   	}
 	return 0;
 }
-
